@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="AntiPlayer">
+    <output-path>$PROJECT_DIR$/out/artifacts/AntiPlayer</output-path>
+    <root id="archive" name="AntiPlayer.jar">
+      <element id="module-output" name="AntiPlayer" />
+    </root>
+  </artifact>
+</component>
