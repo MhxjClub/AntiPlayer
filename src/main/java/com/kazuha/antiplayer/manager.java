@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Objects;
 
 import static com.kazuha.antiplayer.main.config;
@@ -20,11 +21,11 @@ public class manager {
     public static void save() {
         File file = new File(ins.getDataFolder(), "config.yml");
         try{
-            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
+            Writer writer = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(file.toPath()), StandardCharsets.UTF_8));
             ConfigurationProvider s = ConfigurationProvider.getProvider(YamlConfiguration.class);
             s.save(config,writer);
         }catch (Exception e){
-            throw new RuntimeException(" FUCK YOU ");
+            throw new RuntimeException(" e ");
 
         }
     }

@@ -21,11 +21,16 @@ public class command extends Command {
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
         if(!commandSender.hasPermission("antiplayer.bypass")){
-            commandSender.sendMessage(new TextComponent("§c你寄吧谁"));
+            commandSender.sendMessage(new TextComponent("§c无权限"));
             return;
         }
         if(strings.length < 1){
             commandSender.sendMessage(new TextComponent("§c没参数的吗？"));
+                commandSender.sendMessage(new TextComponent("§c可用命令："));
+                commandSender.sendMessage(new TextComponent("§c/ap switch 切换模式"));
+                commandSender.sendMessage(new TextComponent("§c/ap end <时间> 设置结束时间"));
+                commandSender.sendMessage(new TextComponent("§c/ap reason <理由> 设置维护理由"));
+                commandSender.sendMessage(new TextComponent("§c/ap reload 重载"));
             return;
         }
         switch (strings[0]){
@@ -48,7 +53,7 @@ public class command extends Command {
             }
             case "end":{
                 if(strings.length < 2){
-                    commandSender.sendMessage(new TextComponent("§c尼玛死"));
+                    commandSender.sendMessage(new TextComponent("§c??"));
                     return;
                 }
                 config.set("enddate",strings[1]);
@@ -76,7 +81,7 @@ public class command extends Command {
             }
             case "reason":{
                 if(strings.length < 2){
-                    commandSender.sendMessage(new TextComponent("§c尼玛死"));
+                    commandSender.sendMessage(new TextComponent("§c不懂。"));
                     return;
                 }
                 config.set("reason",strings[1]);
