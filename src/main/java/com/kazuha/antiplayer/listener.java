@@ -9,6 +9,8 @@ import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
 
+import java.util.Random;
+
 import static com.kazuha.antiplayer.main.*;
 
 public class listener implements Listener {
@@ -18,6 +20,8 @@ public class listener implements Listener {
             e.setResponse(ping);
         }
     }
+
+
     @EventHandler
     public void onJoin(PostLoginEvent e){
         if(e.getPlayer().hasPermission("antiplayer.bypass")){
