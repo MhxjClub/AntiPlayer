@@ -8,26 +8,23 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
-
-import java.util.Random;
-
 import static com.kazuha.antiplayer.main.*;
 
 public class listener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void OnPing(ProxyPingEvent e){
-        if(config.getBoolean("isantimode")){
+    public void OnPing(ProxyPingEvent e) {
+        if (config.getBoolean("isantimode")) {
             e.setResponse(ping);
         }
     }
 
 
     @EventHandler
-    public void onJoin(PostLoginEvent e){
-        if(e.getPlayer().hasPermission("antiplayer.bypass")){
+    public void onJoin(PostLoginEvent e) {
+        if (e.getPlayer().hasPermission("antiplayer.bypass")) {
             return;
         }
-        if(!main.isMantenance){
+        if (!main.isMantenance) {
             return;
         }
         e.getPlayer().disconnect(new TextComponent(finaled));
