@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.logging.Level;
 
 public class main extends Plugin {
     public static Boolean isMantenance;
@@ -22,7 +23,7 @@ public class main extends Plugin {
     @Override
     public void onEnable() {
         long start = System.currentTimeMillis();
-        getLogger().info("§a§l[ANTIPLAYER]§f插件版本：" + getDescription().getVersion() + "作者: Frk");
+        getLogger().info("§a§l[ANTIPLAYER]§f插件版本：" + getDescription().getVersion());
         getLogger().info("§a§l[ANTIPLAYER]§f加载插件中..");
         ins = this;
         saveConfigFile();
@@ -32,14 +33,25 @@ public class main extends Plugin {
         }
         finaled = builder.toString().replace("{REASON}", main.config.getString("reason")).replace("{EXP_DATE}", main.config.getString("enddate"));
         isMantenance = config.getBoolean("isantimode");
-        ping = manager.regPing();
+        try {
+            ping = manager.regPing();
+        } catch (Exception e) {
+            getLogger().warning("§a§l[ANTIPLAYER]§4加载错误!"+e.getMessage());
+            onDisable();
+            return;
+        }
         ProxyServer.getInstance().getPluginManager().registerListener(this, new listener());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new command("ap"));
 
         getLogger().info("§a§l[ANTIPLAYER]§f加载完毕.(" + (System.currentTimeMillis() - start) + "ms)");
         getLogger().info("§a§l[ANTIPLAYER]§f好的插件 爱来自Frk");
     }
-
+    @Override
+    public void onDisable(){
+        ProxyServer.getInstance().getPluginManager().unregisterListeners(this);
+        ProxyServer.getInstance().getPluginManager().unregisterCommands(this);
+        getLogger().info("§a§l[ANTIPLAYER]§fBye bye");
+    }
     public void saveConfigFile() {
         File dir = getDataFolder();
         if (!dir.exists()) dir.mkdir();
@@ -52,7 +64,7 @@ public class main extends Plugin {
             }
             File file1 = new File(dir,"logo.jpg");
             try (InputStream in = getResourceAsStream("logo.jpg")) {
-                Files.copy(in, file.toPath());
+                Files.copy(in, file1.toPath());
             } catch (IOException e) {
                 e.printStackTrace();
             }

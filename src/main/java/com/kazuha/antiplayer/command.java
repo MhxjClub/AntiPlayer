@@ -1,5 +1,6 @@
 package com.kazuha.antiplayer;
 
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -10,6 +11,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static com.kazuha.antiplayer.main.*;
@@ -120,9 +122,9 @@ public class command extends Command {
                         builder.append(s).append("\n");
                     }
                     finaled = builder.toString().replace("{REASON}", main.config.getString("reason")).replace("{EXP_DATE}", main.config.getString("enddate"));
-                } catch (IOException e) {
+                } catch (Exception e) {
                     commandSender.sendMessage(new TextComponent("§c失败"));
-                    e.printStackTrace();
+                    commandSender.sendMessage(new TextComponent(ChatColor.RED+Arrays.toString(e.getStackTrace())));
                     break;
                 }
                 commandSender.sendMessage(new TextComponent("§a成功.(" + (System.currentTimeMillis() - start) + "ms)"));

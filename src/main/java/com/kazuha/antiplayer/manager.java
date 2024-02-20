@@ -28,13 +28,10 @@ public class manager {
         }
     }
 
-    public static ServerPing regPing() {
+    public static ServerPing regPing() throws Exception{
         ServerPing ping = new ServerPing();
-        try {
-            ping.setFavicon(Favicon.create(ImageIO.read(new File(main.ins.getDataFolder() + config.getString("motd.logo")))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            ping.setFavicon(Favicon.create(ImageIO.read(new File(main.ins.getDataFolder(),config.getString("motd.logo")))));
+
         ping.setVersion(new ServerPing.Protocol(config.getString("motd.version"), 114514));
         ping.setDescriptionComponent(new TextComponent(ChatColor.translateAlternateColorCodes('&', config.getString("motd.line1") + "\n" + config.getString("motd.line2"))));
         return ping;
