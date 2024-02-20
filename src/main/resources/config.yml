@@ -1,9 +1,9 @@
-isantimode: false
+isantimode: false #是否开启维护模式?
 motd:
-  version: "维护 / Maintenance"
-  line1: "&bhomo.store"
-  line2: "&cQQ群: &e1145141919810"
-  logo: "logo.jpg"
+  version: "维护 / Maintenance" #版本名 详见README
+  line1: "&bhomo.store" #维护MOTD-第一行
+  line2: "&cQQ群: &e1145141919810" #维护MOTD-第二行
+  logo: "logo.jpg" # 维护LOGO文件名 - 在
 kick-message:
   - "&4&l悲报"
   - " "

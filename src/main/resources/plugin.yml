@@ -5,3 +5,9 @@ main: com.kazuha.antiplayer.main
 permissions:
   antiplayer.bypass:
     default: op
+  antiplayer.op:
+    default: op
+    description: 允许修改设置
+commands:
+  ap:
+    permission: antiplayer.op

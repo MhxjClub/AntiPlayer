@@ -23,7 +23,7 @@ public class command extends Command {
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-        if (!commandSender.hasPermission("antiplayer.bypass")) {
+        if (!commandSender.hasPermission("antiplayer.op")) {
             commandSender.sendMessage(new TextComponent("§c你没有权限"));
             return;
         }

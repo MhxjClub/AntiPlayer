@@ -50,7 +50,14 @@ public class main extends Plugin {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            File file1 = new File(dir,"logo.jpg");
+            try (InputStream in = getResourceAsStream("logo.jpg")) {
+                Files.copy(in, file.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
         try {
             config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
         } catch (IOException e) {
