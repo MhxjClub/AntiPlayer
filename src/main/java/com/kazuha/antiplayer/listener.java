@@ -13,7 +13,7 @@ import static com.kazuha.antiplayer.main.*;
 public class listener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void OnPing(ProxyPingEvent e) {
-        if (config.getBoolean("isantimode")) {
+        if (main.isMantenance) {
             e.setResponse(ping);
         }
     }
